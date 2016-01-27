@@ -15,6 +15,27 @@ describe('point series options', function () {
         const $scope = $rootScope.$new();
 
         $scope.vis = new Vis(indexPattern, {
+          type: 'line',
+          params: {
+            setYExtents: true,
+            yAxis: {
+              max: max,
+              min: min
+            },
+          },
+          aggs: [
+            {
+              type: 'count',
+              schema: 'metric',
+            },
+            {
+              type: 'date_histogram',
+              schema: 'segment',
+              params: {
+                field: '@timestamp',
+              }
+            }
+          ],
         });
 
         $compile($el)($scope);
