@@ -6,11 +6,21 @@ describe('point series options', function () {
     let compile;
 
     beforeEach(ngMock.module('kibana'));
-    beforeEach(ngMock.inject(function ($compile, $rootScope) {
-      compile = function () {
-        const $el = $('<vis-editor-vis-options>');
+    beforeEach(ngMock.inject(function ($compile, $rootScope, Private) {
+      const Vis = Private(require('ui/Vis'));
+      const indexPattern = Private(require('fixtures/stubbed_logstash_index_pattern'));
+
+      compile = function (min, max) {
+        const $el = $('<vis-editor-vis-options vis="vis">');
         const $scope = $rootScope.$new();
+
+        $scope.vis = new Vis(indexPattern, {
+        });
+
         $compile($el)($scope);
+        $rootScope.$digest();
+
+        return { $el, $scope };
       };
     }));
 
