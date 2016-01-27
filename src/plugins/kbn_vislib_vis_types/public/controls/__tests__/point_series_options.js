@@ -1,5 +1,6 @@
 import ngMock from 'ngMock';
 import $ from 'jquery';
+import expect from 'expect.js';
 
 describe('point series options', function () {
   describe('Set Y-Axis Extents', function () {
@@ -48,15 +49,24 @@ describe('point series options', function () {
     }));
 
     context('min is less than max', function () {
-      it('hides the error message');
+      it('hides the error message', function () {
+        const { $el, $err } = compile(9, 10);
+        expect($err.hasClass('ng-hide')).to.be(true);
+      });
     });
 
     context('min is equal to max', function () {
-      it('shows the error message');
+      it('shows the error message', function () {
+        const { $el, $err } = compile(10, 10);
+        expect($err.hasClass('ng-hide')).to.be(false);
+      });
     });
 
     context('min is greater than max', function () {
-      it('shows the error message');
+      it('shows the error message', function () {
+        const { $el, $err } = compile(11, 10);
+        expect($err.hasClass('ng-hide')).to.be(false);
+      });
     });
   });
 });

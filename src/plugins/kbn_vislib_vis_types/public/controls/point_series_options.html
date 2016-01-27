@@ -21,8 +21,8 @@
                ng-model="vis.params.yAxis.max"
                ng-required="vis.params.setYExtents">
       </label>
-      <div ng-show="vis.params.yAxis.min > vis.params.yAxis.max" data-test-subj="error">
-        <span class="text-danger">Min must not exceed max</span>
+      <div ng-show="vis.params.yAxis.min >= vis.params.yAxis.max" data-test-subj="error">
+        <span class="text-danger">Min must be less than max</span>
       </div>
       <label>
         y-min
