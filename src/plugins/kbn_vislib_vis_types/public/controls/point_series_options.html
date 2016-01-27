@@ -5,7 +5,7 @@
       Current time marker
     </label>
   </div>
-  <div class="vis-option-item">
+  <div class="vis-option-item" data-test-subj="visOptionSetYExtents">
     <label>
       <input type="checkbox" ng-model="vis.params.setYExtents">
       Set Y-Axis Extents
@@ -21,7 +21,7 @@
                ng-model="vis.params.yAxis.max"
                ng-required="vis.params.setYExtents">
       </label>
-      <div ng-show="vis.params.yAxis.min > vis.params.yAxis.max">
+      <div ng-show="vis.params.yAxis.min > vis.params.yAxis.max" data-test-subj="error">
         <span class="text-danger">Min must not exceed max</span>
       </div>
       <label>

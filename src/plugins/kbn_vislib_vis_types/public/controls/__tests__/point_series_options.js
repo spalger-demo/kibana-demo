@@ -41,7 +41,9 @@ describe('point series options', function () {
         $compile($el)($scope);
         $rootScope.$digest();
 
-        return { $el, $scope };
+        const $err = $el.findTestSubject('visOptionSetYExtents error');
+
+        return { $el, $err, $scope };
       };
     }));
 
